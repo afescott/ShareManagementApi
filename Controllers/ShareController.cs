@@ -64,22 +64,22 @@ namespace CoreCodeCamp.Controllers
         //            }
         //        }
 
-        //        [HttpGet("searchShares")] //extends API URL to Share/{shareId}, curly brackets seek a parameter value 
-        //        public async Task<ActionResult<ShareModel[]>> SearchShares(string companyName) //share Id equal to the attribute parameter as names match?
-        //        {
-        //        try
-        //        {
-        //               var results = await _repository.GetAllCampsByEventDate(DateTime.Now); //cmpany name
+        [HttpGet("getShares")] //extends API URL to Share/{shareId}, curly brackets seek a parameter value 
+        public async Task<ActionResult<ShareModel[]>> GetShares() //share Id equal to the attribute parameter as names match?
+        {
+            //try
+            //{
+                var results = await _shareRespository.GetAllUserShares(DateTime.Now); //cmpany name
 
-        //                if (!results.Any()) return NotFound();
+                 if (!results.Any()) return NotFound();
 
-        //                return _mapper.Map<ShareModel[]>(results);
-        //        }
-        //        catch (Exception)
-        //        {
-        //                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
-        //        }
-        //}
+                return _mapper.Map<ShareModel[]>(results);
+            //}
+            //catch (Exception)
+            //{
+            //    return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
+            //}
+        }
 
         [HttpPost("createCompany")]
         public async Task<ActionResult<CompanyModel>> CreateCompany(CompanyModel model) //parameter is what's returned by the api

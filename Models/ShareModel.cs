@@ -10,6 +10,7 @@ namespace CoreCodeCamp.Models
         public double SharePrice { get; set; }
         public double PriceEarningsRatio { get; set; }
         public double DividendYield { get; set; }
- 
+        public DateTime ShareEntryDate { get; set; }
+
     }
 }

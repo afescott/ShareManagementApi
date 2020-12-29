@@ -26,9 +26,22 @@ namespace CoreCodeCamp
                 Options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("192.168.1.65", "192.168.1.65:7000").AllowAnyHeader().AllowAnyMethod();
+                        builder.WithOrigins("192.168.1.65:7000", "192.168.1.65:7000").AllowAnyHeader().AllowAnyMethod();
                     });
             });
+
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("CorsPolicy",
+            //        builder => builder
+            //        .AllowAnyMethod()
+            //        .AllowCredentials()
+            //        .SetIsOriginAllowed(("") => true)
+            //        .AllowAnyHeader()); 
+            //});
+                
+                
+                
 
             services.AddDbContext<ShareContext>();
             services.AddScoped<IShareRepository, ShareRepository>();
@@ -50,6 +63,8 @@ namespace CoreCodeCamp
       {
         app.UseDeveloperExceptionPage();
       }
+
+            app.UseCors("CorsPolicy");
 
       app.UseRouting();
 

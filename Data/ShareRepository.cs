@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoreCodeCamp.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -23,6 +24,23 @@ namespace CoreCodeCamp.Data
             _logger.LogInformation($"Adding an object of type {entity.GetType()} to the context.");
             _context.Add(entity);
             
+        }
+
+        public async Task<Share[]> GetAllUserShares(DateTime dateTime)
+        {
+            _logger.LogInformation($"Getting all Camps");
+
+            IQueryable<Share> query = _context.Shares;
+                //.Include(c => c.DividendYield);
+
+            
+            // Order It
+            //query = query.OrderByDescending(c => c.ShareEntryDate)
+            //  .Where(c => c.ShareEntryDate.Date == dateTime.Date);
+
+            return await query.ToArrayAsync();
+
+
         }
 
         public async Task<bool> InsertCompany()

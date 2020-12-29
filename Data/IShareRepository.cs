@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoreCodeCamp.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,6 +12,8 @@ namespace CoreCodeCamp.Data
         Task<bool> SaveChangesAsync();
 
         Task<bool> InsertCompany();
+
+        Task<Share[]> GetAllUserShares(DateTime date);
 
     }
 }

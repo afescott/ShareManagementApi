@@ -17,6 +17,7 @@ namespace CoreCodeCamp.Data
             this._config = config;
         }
 
+
         public DbSet<Share> Shares { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -52,7 +53,8 @@ namespace CoreCodeCamp.Data
                 {
                     ShareId = 1,
                     SharePrice = 25.5,
-                    DividendYield = 50.5
+                    DividendYield = 50.5,
+                    ShareEntryDate = DateTime.Today
                 });
             });
             //bldr.Entity<Company>()
