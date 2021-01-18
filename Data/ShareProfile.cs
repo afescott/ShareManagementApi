@@ -16,6 +16,12 @@ namespace CoreCodeCamp.Data
             this.CreateMap<ShareModel, Share>();
             this.CreateMap<Company, CompanyModel>();
             this.CreateMap<CompanyModel, Company>();
+            this.CreateMap<ShareStrategyModel, ShareStrategy>();
+            this.CreateMap<ShareStrategy, ShareStrategyModel>();
+            this.CreateMap<CompetitorModel, Competitor>();
+            this.CreateMap<Competitor, CompetitorModel>();
+            this.CreateMap<FundModel, Fund>();
+            this.CreateMap<Fund, FundModel>();
         }
          
     }

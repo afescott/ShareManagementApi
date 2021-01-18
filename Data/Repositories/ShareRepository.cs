@@ -26,6 +26,38 @@ namespace CoreCodeCamp.Data
             
         }
 
+        public void AddOrUpdate(object entity, bool isUpdate)
+        {
+            var state = _context.Entry(entity).State;
+
+            if (isUpdate)
+            {
+                _context.Update(entity);
+            }
+            else
+            {
+                _context.Add(entity);
+            }
+
+  
+            //switch (state)
+            //{
+            //    case EntityState.Detached:
+            //        _context.Add(entity);
+            //        break;
+            //    case EntityState.Modified:
+            //        _context.Update(entity);
+            //        break;
+            //    case EntityState.Added:
+            //    case EntityState.Deleted:
+            //    case EntityState.Unchanged:
+            //        // do nothing
+            //        break;
+            //}
+        }
+
+     
+
         public async Task<Share[]> GetAllUserShares(DateTime dateTime)
         {
             _logger.LogInformation($"Getting all Camps");
@@ -41,6 +73,38 @@ namespace CoreCodeCamp.Data
             return await query.ToArrayAsync();
 
 
+        }
+
+        public async Task<Share[]> GetShareCompetitorsInfo(int shareId)
+        {
+            
+            IQueryable<Share> query = _context.Shares;
+
+            var results = query.Select(x => x).Where(xx => xx.ShareId == shareId).ToArrayAsync();
+
+            return await results;
+        }
+
+        public async Task<Competitor[]> GetCompetitors(int shareId)
+        {
+            _logger.LogInformation($"Getting all Camps");
+
+            IQueryable<Competitor> query = _context.Competitor;
+
+            var result = query.Select(x => x).Where(xx => xx.ShareId == shareId);
+
+            return await result.ToArrayAsync();
+        }
+
+        public async Task<ShareStrategy>  GetShareStrategy(int shareId)
+        {
+            _logger.LogInformation($"Getting all Camps");
+
+            IQueryable<ShareStrategy> query = _context.ShareStrategy;
+
+           var result = query.Select(x => x).Where(xx => xx.ShareId == shareId).FirstOrDefaultAsync();
+
+            return await result;
         }
 
         public async Task<bool> InsertCompany()

@@ -21,27 +21,18 @@ namespace CoreCodeCamp
         private readonly string MyAllowSpecificOrigins = "192.168.1.68:4200";
     public void ConfigureServices(IServiceCollection services)
     {
-            services.AddCors(Options =>
-            {
-                Options.AddPolicy(name: MyAllowSpecificOrigins,
-                    builder =>
-                    {
-                        builder.WithOrigins("192.168.1.65:7000", "192.168.1.65:7000").AllowAnyHeader().AllowAnyMethod();
-                    });
-            });
-
-            //services.AddCors(options =>
+            //services.AddCors(Options =>
             //{
-            //    options.AddPolicy("CorsPolicy",
-            //        builder => builder
-            //        .AllowAnyMethod()
-            //        .AllowCredentials()
-            //        .SetIsOriginAllowed(("") => true)
-            //        .AllowAnyHeader()); 
+            //    Options.AddPolicy(name: MyAllowSpecificOrigins,
+            //        builder =>
+            //        {
+            //            builder.WithOrigins("192.168.1.65:7000", "192.168.1.65:7000").AllowAnyHeader().AllowAnyMethod();
+            //        });
             //});
-                
-                
-                
+
+            services.AddDbContext<FundContext>();
+            services.AddScoped<IFundRepository, FundRepository>();
+
 
             services.AddDbContext<ShareContext>();
             services.AddScoped<IShareRepository, ShareRepository>();
@@ -64,13 +55,20 @@ namespace CoreCodeCamp
         app.UseDeveloperExceptionPage();
       }
 
-            app.UseCors("CorsPolicy");
+            //app.UseCors("CorsPolicy");
 
-      app.UseRouting();
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
 
             app.UseCors(MyAllowSpecificOrigins);
 
-      app.UseAuthentication();
+            app.UseAuthentication();
       app.UseAuthorization();
 
       app.UseEndpoints(cfg =>

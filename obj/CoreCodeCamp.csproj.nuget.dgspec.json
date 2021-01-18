@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ashley\\Documents\\Ash Api\\CoreApiFundamentals-5.0\\src\\CoreCodeCamp.csproj": {}
+    "C:\\Users\\Swifty\\Documents\\API\\Initial-commit\\CoreCodeCamp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ashley\\Documents\\Ash Api\\CoreApiFundamentals-5.0\\src\\CoreCodeCamp.csproj": {
+    "C:\\Users\\Swifty\\Documents\\API\\Initial-commit\\CoreCodeCamp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ashley\\Documents\\Ash Api\\CoreApiFundamentals-5.0\\src\\CoreCodeCamp.csproj",
+        "projectUniqueName": "C:\\Users\\Swifty\\Documents\\API\\Initial-commit\\CoreCodeCamp.csproj",
         "projectName": "CoreCodeCamp",
-        "projectPath": "C:\\Users\\ashley\\Documents\\Ash Api\\CoreApiFundamentals-5.0\\src\\CoreCodeCamp.csproj",
-        "packagesPath": "C:\\Users\\ashley\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ashley\\Documents\\Ash Api\\CoreApiFundamentals-5.0\\src\\obj\\",
+        "projectPath": "C:\\Users\\Swifty\\Documents\\API\\Initial-commit\\CoreCodeCamp.csproj",
+        "packagesPath": "C:\\Users\\Swifty\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Swifty\\Documents\\API\\Initial-commit\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\ashley\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Swifty\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"

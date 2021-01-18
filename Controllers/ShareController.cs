@@ -21,7 +21,7 @@ namespace CoreCodeCamp.Controllers
         private readonly IMapper _mapper;
         private readonly IShareRepository _shareRespository;
 
-
+        
         public ShareController( IShareRepository shareRespository, IMapper mapper) //required for dependency injection
         {
             //_repository = respository;
@@ -29,6 +29,35 @@ namespace CoreCodeCamp.Controllers
             _mapper = mapper;
          
         }
+
+        [HttpPost("createShareStrategy")]
+        public async Task<ActionResult<ShareStrategyModel>> CreateShare(ShareStrategyModel model) //parameter is what's returned by the api
+        {
+            //try
+            //{
+
+            var result = _mapper.Map<ShareStrategy>(model);
+
+
+            _shareRespository.Add(result);
+
+                if (await _shareRespository.SaveChangesAsync())
+                 {
+                    return Created("", _mapper.Map<ShareStrategyModel>(model));
+                }
+
+                return Ok();
+            //}
+            //catch (Exception)
+            //{
+            //    return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
+            //}
+
+            return BadRequest();
+        }
+
+
+
         //        [HttpGet]
         //        public async Task<ActionResult<ShareModel[]>> Get()
         //        {
@@ -81,22 +110,32 @@ namespace CoreCodeCamp.Controllers
             //}
         }
 
-        [HttpPost("createCompany")]
-        public async Task<ActionResult<CompanyModel>> CreateCompany(CompanyModel model) //parameter is what's returned by the api
+        [HttpPut("createCompany/{toUpdate}")]
+        public async Task<ActionResult<CompanyModel>>
+            CreateCompany(CompanyModel model, bool toUpdate) //parameter is what's returned by the api
         {
             //try
             //{
             var result = _mapper.Map<Company>(model);
 
-            _shareRespository.Add(result);
 
-            if (await _shareRespository.SaveChangesAsync())
+            if (toUpdate)
+            {
+                _shareRespository.AddOrUpdate(result, true);
+            }
+            else
+            {
+                _shareRespository.AddOrUpdate(result, false);
+            }
+
+        if (await _shareRespository.SaveChangesAsync())
             {
                 return Created("", _mapper.Map<CompanyModel>(model));
             }
 
             return Ok();
-            //} catch (Exception)
+            //}
+            //catch (Exception)
             //{
             //    return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
             //}
@@ -104,12 +143,19 @@ namespace CoreCodeCamp.Controllers
             return BadRequest();
         }
 
+     
+
         [HttpPost("createShare")]
         public async Task<ActionResult<ShareModel>> CreateShare(ShareModel model) //parameter is what's returned by the api
         {
             //try
             //{
+         
+                model.ShareEntryDate = DateTime.Now.ToShortTimeString();
+
+
                 var result = _mapper.Map<Share>(model);
+
 
                 _shareRespository.Add(result);
 
@@ -119,7 +165,8 @@ namespace CoreCodeCamp.Controllers
                 }
 
                 return Ok();
-            //} catch (Exception)
+            //}
+            //catch (Exception)
             //{
             //    return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
             //}
