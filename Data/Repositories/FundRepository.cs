@@ -35,17 +35,11 @@ namespace CoreCodeCamp.Data
             return (await _context.SaveChangesAsync()) > 0;
         }
 
-        public async  Task<Fund[]> GetAllFunds(DateTime date)
+        public async Task<Fund[]> GetAllFunds()
         {
             _logger.LogInformation($"Getting all Camps");
 
             IQueryable<Fund> query = _context.Funds;
-            //.Include(c => c.DividendYield);
-
-
-            // Order It
-            //query = query.OrderByDescending(c => c.ShareEntryDate)
-            //  .Where(c => c.ShareEntryDate.Date == dateTime.Date);
 
             return await query.ToArrayAsync();
         }
@@ -62,6 +56,17 @@ namespace CoreCodeCamp.Data
             {
                 _context.Add(entity);
             }
+        }
+
+        public async Task<FundStrategy> GetFundStrategy(int shareId)
+        {
+            _logger.LogInformation($"Getting all Camps");
+
+            IQueryable<FundStrategy> query = _context.FundStrategy;
+
+            var result = query.Select(x => x).Where(xx => xx.FundId == shareId).FirstOrDefaultAsync();
+
+            return await result;
         }
   }
 }

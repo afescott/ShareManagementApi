@@ -14,6 +14,7 @@ namespace CoreCodeCamp.Data
         private readonly IConfiguration _config;
 
         public DbSet<Fund> Funds { get; set; }
+        public DbSet<FundStrategy> FundStrategy { get; set; }
 
         public FundContext(DbContextOptions<FundContext> options, IConfiguration config) : base(options)
         {
@@ -35,15 +36,34 @@ namespace CoreCodeCamp.Data
                 u.HasData(new
                 {
                     FundId = 1,
-                    NetAssets = 21.5,
-                    DividendYield = 0.5, 
+                    FundName = "asfaf",
+                    DividendYield = 25.1,
+                    NetAssets = 25.1,
                     IsEtf = false,
                     YetToIpo = false
                 });
 
 
-            });
-        }
 
+            });
+
+            bldr.Entity<FundStrategy>(u =>
+            {
+                u.HasKey(b => b.FundId);
+                u.Property(b => b.FundId).ValueGeneratedOnAdd();
+
+                u.HasData(new
+                {
+                    FundId = 21,
+                    TimingJustification = "frank",
+                    PlanForIncrease = "Frank",
+                    PlanFor20Decrease = "Frank",
+                    PlanFor40Decrease = "Frank"
+
+                });
+
+            });
+
+        }
     }
 }

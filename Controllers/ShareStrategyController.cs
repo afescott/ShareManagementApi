@@ -37,18 +37,48 @@ namespace CoreCodeCamp.Controllers
             //{
 
             //var oldModel = await _shareRespository.GetShareStrategy(model.ShareId);
+            
 
-            var result = _mapper.Map<ShareStrategy>(model);
+            var fundStrategy = new FundStrategy();
+            var shareStrategy = new ShareStrategy();
+
+            if (model.IsFund)
+            {
+                fundStrategy = _mapper.Map<FundStrategy>(model);
+                fundStrategy.FundId = model.ShareId;
+            }
+            else
+            {
+                shareStrategy = _mapper.Map<ShareStrategy>(model);
+            }
+
+         
 
                 if (toUpdate)
                 {
+                    if (model.IsFund)
+                    {
+                        _shareRespository.AddOrUpdate(fundStrategy, true);
+                }
+                    else
+                    {
+                        _shareRespository.AddOrUpdate(shareStrategy, true);
+                }
 
-                _shareRespository.AddOrUpdate(result, true);
+                    
 
                 }
                 else
                 {
-                    _shareRespository.AddOrUpdate(result, false);
+                    if (model.IsFund)
+                    {
+                        _shareRespository.AddOrUpdate(fundStrategy, false);
+                    }
+                    else
+                    {
+                        _shareRespository.AddOrUpdate(shareStrategy, false);
+                    }
+               
                 }
 
                 
@@ -74,19 +104,21 @@ namespace CoreCodeCamp.Controllers
         [HttpGet("{shareId}")]
         public async Task<ActionResult<ShareStrategyModel>>RetrieveShareStrategy(int shareId) //parameter is what's returned by the api
         {
-            //try
-            //{
+            try
+            {
                 var result = await _shareRespository.GetShareStrategy(shareId); //cmpany name
 
                 if (result == null ) return NotFound();
 
                 return _mapper.Map<ShareStrategyModel>(result);
-            //}
-            //catch (Exception)
-            //{
-            //    return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
-            //}
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
+            }
 
         }
+
+
     }
 }

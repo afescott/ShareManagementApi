@@ -22,6 +22,8 @@ namespace CoreCodeCamp.Data
             this.CreateMap<Competitor, CompetitorModel>();
             this.CreateMap<FundModel, Fund>();
             this.CreateMap<Fund, FundModel>();
+            this.CreateMap<ShareStrategyModel, FundStrategy>();
+            this.CreateMap<FundStrategy, ShareStrategy>();
         }
          
     }

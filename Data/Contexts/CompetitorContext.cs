@@ -29,9 +29,6 @@ namespace CoreCodeCamp.Data
         {
             bldr.Entity<Competitor>(u =>
             {
-                //u.HasOne(b => b.Share)
-                //    .WithOne(i => i.Competitor)
-                //    .HasForeignKey<Share>(b => b.ShareId);
                 u.HasKey(b =>  new  { b.ShareId, b.CompetitorId});
                 u.Property(b => b.ShareId).ValueGeneratedOnAdd();
                 u.HasData(new

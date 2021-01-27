@@ -5828,25 +5828,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Swifty\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\ashle\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Swifty\\Documents\\API\\Initial-commit\\CoreCodeCamp.csproj",
+      "projectUniqueName": "C:\\Users\\ashle\\OneDrive\\Documents\\GitHub\\Trading_API\\CoreCodeCamp.csproj",
       "projectName": "CoreCodeCamp",
-      "projectPath": "C:\\Users\\Swifty\\Documents\\API\\Initial-commit\\CoreCodeCamp.csproj",
-      "packagesPath": "C:\\Users\\Swifty\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Swifty\\Documents\\API\\Initial-commit\\obj\\",
+      "projectPath": "C:\\Users\\ashle\\OneDrive\\Documents\\GitHub\\Trading_API\\CoreCodeCamp.csproj",
+      "packagesPath": "C:\\Users\\ashle\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ashle\\OneDrive\\Documents\\GitHub\\Trading_API\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Swifty\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\ashle\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -5904,7 +5899,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

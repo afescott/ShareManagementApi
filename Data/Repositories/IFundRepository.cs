@@ -11,7 +11,9 @@ namespace CoreCodeCamp.Data
 
         Task<bool> SaveChangesAsync();
 
-        Task<Fund[]> GetAllFunds(DateTime date);
+        Task<Fund[]> GetAllFunds();
         void AddOrUpdateFundStrategy(object entity, bool isUpdate);
+
+        Task<FundStrategy> GetFundStrategy(int shareId);
     }
 }

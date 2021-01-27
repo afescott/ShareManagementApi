@@ -9,8 +9,7 @@ namespace CoreCodeCamp.Models
 {
     public class ShareModel //represents only the relevant information we're looking for 
     {
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        
         public int ShareId { get; set; }
         public double PriceEarningsRatio { get; set; }
        public string CompanyName { get; set; }

@@ -56,7 +56,6 @@ namespace CoreCodeCamp.Data
             //}
         }
 
-     
 
         public async Task<Share[]> GetAllUserShares(DateTime dateTime)
         {

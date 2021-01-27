@@ -55,27 +55,27 @@ namespace CoreCodeCamp.Controllers
         [HttpGet("getFunds")] //extends API URL to Share/{shareId}, curly brackets seek a parameter value 
         public async Task<ActionResult<FundModel[]>> GetFunds() //share Id equal to the attribute parameter as names match?
         {
-            //try
-            //{
-            var results = await _fundRespository.GetAllFunds(DateTime.Now); //cmpany name
+            try
+            {
+                var results = await _fundRespository.GetAllFunds(); //cmpany name
 
             if (!results.Any()) return NotFound();
 
             return _mapper.Map<FundModel[]>(results);
-            //}
-            //catch (Exception)
-            //{
-            //    return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
-            //}
         }
-
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
+    }
+}
+         
         [HttpPut("createFundStrategy/{toUpdate}")]
         public async Task<ActionResult<ShareStrategyModel>>
             CreateFundStrategy(ShareStrategyModel model, bool toUpdate) //parameter is what's returned by the api
         {
-            //try
-            //{
-            var result = _mapper.Map<ShareStrategy>(model);
+            try
+            {
+                var result = _mapper.Map<ShareStrategy>(model);
 
 
             if (toUpdate)
@@ -93,13 +93,32 @@ namespace CoreCodeCamp.Controllers
             }
 
             return Ok();
-            //}
-            //catch (Exception)
-            //{
-            //    return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
-            //}
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
+            }
 
             return BadRequest();
+        }
+
+
+        [HttpGet("{fundId}")]
+        public async Task<ActionResult<ShareStrategy>> RetrieveFundStrategy(int fundId) //parameter is what's returned by the api
+        {
+            try
+            {
+                var result = await _fundRespository.GetFundStrategy(fundId); //cmpany name
+
+                if (result == null) return NotFound();
+
+                return _mapper.Map<ShareStrategy>(result);
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
+            }
+
         }
 
     }
